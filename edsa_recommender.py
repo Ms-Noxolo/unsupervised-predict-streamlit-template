@@ -39,6 +39,7 @@ from recommenders.content_based import content_model
 
 # Added Custom Libraries
 from added_functions.webscrapper import poster
+import added_markdown.text as txt
 
 # Data Loading
 title_list = load_movie_titles('resources/data/movies.csv')
@@ -48,7 +49,7 @@ def main():
 
     # DO NOT REMOVE the 'Recommender System' option below, however,
     # you are welcome to add more options to enrich your app.
-    page_options = ["Recommender System","Solution Overview", "Movie App"]
+    page_options = ["Recommender System","Solution Overview", "EDA", "Movie App"]
 
     # -------------------------------------------------------------------
     # ----------- !! THIS CODE MUST NOT BE ALTERED !! -------------------
@@ -110,11 +111,17 @@ def main():
     # You may want to add more sections here for aspects such as an EDA,
     # or to provide your business pitch.
 
-    if page_selection == "Movie App":
+    if page_selection == "EDA":
+        st.title("Exploratory Data Analysis")
+
+        st.write(txt.introduction)
+
+    if page_selection == "Movie App":        
         st.title('My Movies App')
 
         movies = pd.read_csv('resources/data/movies.csv')
         links = pd.read_csv('../data/links.csv', nrows=25)
+        
 
         df = pd.merge(links, movies, on='movieId')
 
