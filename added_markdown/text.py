@@ -1,5 +1,5 @@
 introduction = """
     ## Introduction to EDA
 
-    The movies data
+    The movies database spans a multilple genres
 """

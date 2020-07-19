@@ -39,10 +39,16 @@ from recommenders.content_based import content_model
 
 # Added Custom Libraries
 from added_functions.webscrapper import poster
+from added_functions.plotting import counting_plot
 import added_markdown.text as txt
 
 # Data Loading
 title_list = load_movie_titles('resources/data/movies.csv')
+
+# Custom Data loading
+ratings = pd.read_csv('resources/data/ratings.csv')
+movies = pd.read_csv('resources/data/movies.csv')
+links = pd.read_csv('../data/links.csv', nrows=25)
 
 # App declaration
 def main():
@@ -111,19 +117,20 @@ def main():
     # You may want to add more sections here for aspects such as an EDA,
     # or to provide your business pitch.
 
+    # Data manipulation
+    df = pd.merge(links, movies, on='movieId')
+
     if page_selection == "EDA":
         st.title("Exploratory Data Analysis")
 
         st.write(txt.introduction)
 
+        myfig = counting_plot(ratings, 'rating')
+
+        st.plotly_chart(myfig)
+
     if page_selection == "Movie App":        
         st.title('My Movies App')
-
-        movies = pd.read_csv('resources/data/movies.csv')
-        links = pd.read_csv('../data/links.csv', nrows=25)
-        
-
-        df = pd.merge(links, movies, on='movieId')
 
         option = st.sidebar.selectbox(
             label='Movie',
