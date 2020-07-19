@@ -37,6 +37,14 @@ from utils.data_loader import load_movie_titles
 from recommenders.collaborative_based import collab_model
 from recommenders.content_based import content_model
 
+# Other modules
+import scrapy
+import re
+from io import BytesIO
+import requests
+from PIL import Image
+from scrapy.http import HtmlResponse
+
 # Data Loading
 title_list = load_movie_titles('resources/data/movies.csv')
 
@@ -45,7 +53,7 @@ def main():
 
     # DO NOT REMOVE the 'Recommender System' option below, however,
     # you are welcome to add more options to enrich your app.
-    page_options = ["Recommender System","Solution Overview"]
+    page_options = ["Recommender System","Solution Overview", "Movie App"]
 
     # -------------------------------------------------------------------
     # ----------- !! THIS CODE MUST NOT BE ALTERED !! -------------------
@@ -107,6 +115,41 @@ def main():
     # You may want to add more sections here for aspects such as an EDA,
     # or to provide your business pitch.
 
+    if page_selection == "Movie App":
+        st.title('My Movies App')
+
+        movies = pd.read_csv('resources/data/movies.csv')
+        links = pd.read_csv('../data/links.csv', nrows=25)
+
+        df = pd.merge(links, movies, on='movieId')
+
+        def poster(reference):
+
+            url = 'https://www.themoviedb.org/movie/' + str(reference)
+            html = requests.get(url).content
+            response = HtmlResponse(url=url, body=html)
+
+            pic_url = response.css('div.image_content img::attr(data-srcset)').get()
+            # From the url, get pictures
+            first_url = re.findall('https?\S+', pic_url)[0]
+            pic = requests.get(first_url)
+
+            img = Image.open(BytesIO(pic.content))
+
+            return img
+
+
+        option = st.sidebar.selectbox(
+            label='Movie',
+            options=df['title'],
+            index=0
+        )
+
+        t = df[df['title'] == option]['tmdbId'].iloc[0] 
+
+        img = poster(t)
+
+        st.image(img)
 
 if __name__ == '__main__':
     main()
