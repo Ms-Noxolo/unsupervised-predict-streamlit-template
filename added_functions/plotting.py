@@ -3,15 +3,16 @@ import plotly.graph_objs as go
 import pandas as pd 
 
 
-# RATINGS
-def ratings_counter(movie_ratings, orientation='vertical'):
+def counting_plot(df, column_name, orientation='vertical'):
     """
     Returns a bar graph of the number movies in each rating category.
     
     Parameters
     -----------
-    movie_ratings: list, np.array, or pd.Series
+    df: dataframe
         A list of movie ratings
+    column_name: str
+        A column name in df consisting of categorical values
     orientation: str, {'vertical', 'horizontal'} default='vertical'
         The orientation of the bar graph
          
@@ -21,15 +22,19 @@ def ratings_counter(movie_ratings, orientation='vertical'):
         Axes object for number of movies in each rating category 
     """
 
-def ratings_distribution(movie_ratings):
+
+
+def distribution_plot(df, column_name):
 
     """
     Returns a histogram of the movie ratings distribution.
     
     Parameters
     -----------
-    movie_ratings: list, np.array, or pd.Series
-        A list of movie ratings
+    df: dataframe
+        A dataframe of movie ratings
+    column_name: str
+        A column name in df consisting of numeric values
          
     Returns
     --------
