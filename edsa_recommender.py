@@ -124,6 +124,18 @@ def main():
         df = pd.merge(links, movies, on='movieId')
 
         def poster(reference):
+            """Returns a movie poster for the selected movie
+
+            Parameters:
+            -----------
+            reference: str
+                A tmdb identification number
+
+            Returns
+            --------
+            image
+                A movie poster
+            """
 
             url = 'https://www.themoviedb.org/movie/' + str(reference)
             html = requests.get(url).content
