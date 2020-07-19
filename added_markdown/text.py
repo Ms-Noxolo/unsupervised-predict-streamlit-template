@@ -1,4 +1,5 @@
 introduction = """
-    # Hi there
-    My name is
+    ## Introduction to EDA
+
+    The movies data
 """
