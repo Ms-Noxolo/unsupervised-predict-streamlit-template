@@ -39,7 +39,7 @@ from recommenders.content_based import content_model
 
 # Added Custom Libraries
 from added_functions.webscrapper import poster
-from added_functions.plotting import counting_plot, distribution_plot
+from added_functions.ratings_plots import counting_plot, distribution_plot
 import added_markdown.text as txt
 
 # Data Loading
@@ -127,7 +127,7 @@ def main():
         st.write(txt.introduction)
 
         show_ratings = st.checkbox("Movie ratings")
-        
+
         if show_ratings:
             ratings_count = counting_plot(ratings, 'rating')
 
