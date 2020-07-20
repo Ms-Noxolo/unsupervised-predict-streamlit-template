@@ -3,13 +3,13 @@ import plotly.graph_objs as go
 import pandas as pd 
 
 # Release year
-def release_year(data_frame):
+def release_year(movies_df):
     """
     Returns a line plot of number of movies released by year
 
     Parameters
     -----------
-    data_frame: DataFrame
+    movies_df: DataFrame
         A Datarame consisting of movie title with year released
 
     Returns
@@ -20,15 +20,15 @@ def release_year(data_frame):
 
     # Storing the years from the titles separately:
     # We specify the parantheses so we don’t conflict with movies that have years in their titles
-    data_frame["year"] = data_frame.title.str.extract("(\(\d\d\d\d\))",expand=False)
+    movies_df["year"] = movies_df.title.str.extract("(\(\d\d\d\d\))",expand=False)
     # Removing the parentheses
-    data_frame["year"] = data_frame.year.str.extract("(\d\d\d\d)",expand=False)
+    movies_df["year"] = movies_df.year.str.extract("(\d\d\d\d)",expand=False)
     # Removing the years from the ‘title’ column
-    data_frame["title"] = data_frame.title.str.replace("(\(\d\d\d\d\))", "")
+    movies_df["title"] = movies_df.title.str.replace("(\(\d\d\d\d\))", "")
     # Applying the strip function to get rid of any ending whitespace characters that may have appeared
-    data_frame["title"] = data_frame["title"].apply(lambda x: x.strip())
+    movies_df["title"] = movies_df["title"].apply(lambda x: x.strip())
 
-    release_year_counter = data_frame.groupby('year')['year'].count()
+    release_year_counter = movies_df.groupby('year')['year'].count()
 
     fig = go.Figure(
         data=[

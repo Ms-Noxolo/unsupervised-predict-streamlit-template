@@ -23,14 +23,13 @@ def poster(reference):
         A movie poster
     """
 
-    url = 'https://www.themoviedb.org/movie/' + str(reference)
+    url = 'https://www.imdb.com/title/tt0' + str(reference)
     html = requests.get(url).content
     response = HtmlResponse(url=url, body=html)
 
-    pic_url = response.css('div.image_content img::attr(data-srcset)').get()
+    pic_url = response.css('div.poster img::attr(src)').get()
     # From the url, get pictures
-    first_url = re.findall('https?\S+', pic_url)[0]
-    pic = requests.get(first_url)
+    pic = requests.get(pic_url)
 
     img = Image.open(BytesIO(pic.content))
 

@@ -155,7 +155,7 @@ def main():
             index=0
         )
 
-        poster_id = df[df['title'] == option]['tmdbId'].iloc[0] 
+        poster_id = df[df['title'] == option]['imdbId'].iloc[0] 
 
         img = poster(poster_id)
 
