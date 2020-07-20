@@ -38,7 +38,8 @@ def counting_plot(data_frame, column_name):
                 'title': 'Movie rating', 
                 'type': 'category'
             },
-            yaxis={'title': 'Count'}
+            yaxis={'title': 'Count'},
+            template='none'
         )
     )
 
@@ -84,12 +85,41 @@ def distribution_plot(data_frame, groupby_column, column_name):
             )
         ],
         layout=go.Layout(
-            title='Average ratings of movies with 10 or more viewers',
+            title='Average ratings of movies',
             title_x=0.5,
             xaxis={'title': 'Movie ratings', 'range': [0.5, 5.5]},
-            yaxis={'title': 'Frequency'}
+            yaxis={'title': 'Frequency'},
+            template='none'
         )        
     )
 
     return fig
+
+
+    # Release year
+    def release_year(data_frame):
+        """
+        Returns a line plot of number of movies released by year
+
+        Parameters
+        -----------
+        data_frame: DataFrame
+            A Datarame consisting of movie title with year released
+
+        Returns
+        --------
+        ax : plotly graph object
+            Axes object of number of movies released by year 
+        """
+
+        # Storing the years from the titles separately:
+        # We specify the parantheses so we don’t conflict with movies that have years in their titles
+        data_frame["year"] = data_frame.title.str.extract("(\(\d\d\d\d\))",expand=False)
+        # Removing the parentheses
+        data_frame["year"] = data_frame.year.str.extract("(\d\d\d\d)",expand=False)
+        # Removing the years from the ‘title’ column
+        data_frame["title"] = data_frame.title.str.replace("(\(\d\d\d\d\))", "")
+        # Applying the strip function to get rid of any ending whitespace characters that may have appeared
+        data_frame["title"] = data_frame["title"].apply(lambda x: x.strip())
+
 
