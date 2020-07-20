@@ -39,7 +39,7 @@ from recommenders.content_based import content_model
 
 # Added Custom Libraries
 from added_functions.webscrapper import poster
-from added_functions.plotting import counting_plot
+from added_functions.plotting import counting_plot, distribution_plot
 import added_markdown.text as txt
 
 # Data Loading
@@ -49,6 +49,7 @@ title_list = load_movie_titles('resources/data/movies.csv')
 ratings = pd.read_csv('resources/data/ratings.csv')
 movies = pd.read_csv('resources/data/movies.csv')
 links = pd.read_csv('../data/links.csv', nrows=25)
+train = pd.read_csv('../data/train.csv')
 
 # App declaration
 def main():
@@ -125,9 +126,14 @@ def main():
 
         st.write(txt.introduction)
 
-        myfig = counting_plot(ratings, 'rating')
+        ratings_count = counting_plot(ratings, 'rating')
 
-        st.plotly_chart(myfig)
+        st.plotly_chart(ratings_count)
+
+        ratings_distribution = distribution_plot(train, 'movieId', 'rating')
+
+        st.plotly_chart(ratings_distribution)
+
 
     if page_selection == "Movie App":        
         st.title('My Movies App')

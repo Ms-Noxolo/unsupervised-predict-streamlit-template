@@ -45,6 +45,7 @@ def counting_plot(data_frame, column_name):
     return fig
 
 
+
 def distribution_plot(data_frame, groupby_column, column_name):
 
     """
@@ -71,19 +72,21 @@ def distribution_plot(data_frame, groupby_column, column_name):
     filtered_counter = viewing_counter[viewing_counter >= 100]
 
     # Check for movies in the ratings table that are in the filtered_counter
-    filtered_df = data_frame[data_frame[groupby_column].isin(filtered_counter.values)]
+    filtered_df = data_frame[data_frame[groupby_column].isin(filtered_counter.index)]
 
     avg_rating = filtered_df.groupby(groupby_column)[column_name].mean()
 
     fig = go.Figure(
         data=[
             go.Histogram(
-            x=avg_rating.values
+            x=avg_rating,
+            hoverinfo='y',
+            nbinsx=10
             )
         ],
         layout=go.Layout(
             title='Average ratings of movies',
-            xaxis={'title': 'Movie ratings'},
+            xaxis={'title': 'Movie ratings', 'range': [0, 5]},
             yaxis={'title': 'Frequency'}
         )        
     )
