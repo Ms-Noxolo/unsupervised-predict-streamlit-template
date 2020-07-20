@@ -33,6 +33,7 @@ def counting_plot(data_frame, column_name):
         ],
         layout=go.Layout(
             title='Number of movies in each ratings category',
+            title_x=0.5,
             xaxis={
                 'title': 'Movie rating', 
                 'type': 'category'
@@ -44,10 +45,7 @@ def counting_plot(data_frame, column_name):
     return fig
 
 
-
-
-
-def distribution_plot(data_frame, column_name):
+def distribution_plot(data_frame, groupby_column, column_name):
 
     """
     Returns a histogram of the movie ratings distribution.
@@ -56,6 +54,8 @@ def distribution_plot(data_frame, column_name):
     -----------
     data_frame: DataFrame
         A dataframe of movie ratings
+    groupby_column: str
+        A column name in df used as a groupby column
     column_name: str
         A column name in df consisting of numeric values
          
@@ -64,5 +64,29 @@ def distribution_plot(data_frame, column_name):
     ax : plotly graph object
         Axes object of movie ratings distribution 
     """
+    
+    # Check for movies with 100 or more views
+    viewing_counter = data_frame.groupby(groupby_column).count()[column_name]
+    # Filter and get movies with 100 or more viewers
+    filtered_counter = viewing_counter[viewing_counter >= 100]
 
-    fig = go.Figure()
+    # Check for movies in the ratings table that are in the filtered_counter
+    filtered_df = data_frame[data_frame[groupby_column].isin(filtered_counter.values)]
+
+    avg_rating = filtered_df.groupby(groupby_column)[column_name].mean()
+
+    fig = go.Figure(
+        data=[
+            go.Histogram(
+            x=avg_rating.values
+            )
+        ],
+        layout=go.Layout(
+            title='Average ratings of movies',
+            xaxis={'title': 'Movie ratings'},
+            yaxis={'title': 'Frequency'}
+        )        
+    )
+
+    return fig
+
