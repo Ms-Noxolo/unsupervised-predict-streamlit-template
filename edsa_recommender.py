@@ -49,7 +49,7 @@ title_list = load_movie_titles('resources/data/movies.csv')
 ratings = pd.read_csv('resources/data/ratings.csv')
 movies = pd.read_csv('resources/data/movies.csv')
 links = pd.read_csv('../data/links.csv', nrows=25)
-train = pd.read_csv('../data/train.csv')
+#train = pd.read_csv('../data/train.csv')
 
 # App declaration
 def main():
@@ -126,13 +126,18 @@ def main():
 
         st.write(txt.introduction)
 
-        ratings_count = counting_plot(ratings, 'rating')
+        show_ratings = st.checkbox("Movie ratings")
+        
+        if show_ratings:
+            ratings_count = counting_plot(ratings, 'rating')
 
-        st.plotly_chart(ratings_count)
+            st.plotly_chart(ratings_count)
+            st.write(txt.ratings_countplot_markdown)
 
-        ratings_distribution = distribution_plot(train, 'movieId', 'rating')
+            ratings_distribution = distribution_plot(ratings, 'movieId', 'rating')
 
-        st.plotly_chart(ratings_distribution)
+            st.plotly_chart(ratings_distribution)
+            st.write(txt.avg_ratings_markdown)
 
 
     if page_selection == "Movie App":        

@@ -69,7 +69,7 @@ def distribution_plot(data_frame, groupby_column, column_name):
     # Check for movies with 100 or more views
     viewing_counter = data_frame.groupby(groupby_column).count()[column_name]
     # Filter and get movies with 100 or more viewers
-    filtered_counter = viewing_counter[viewing_counter >= 100]
+    filtered_counter = viewing_counter[viewing_counter >= 10]
 
     # Check for movies in the ratings table that are in the filtered_counter
     filtered_df = data_frame[data_frame[groupby_column].isin(filtered_counter.index)]
@@ -80,13 +80,13 @@ def distribution_plot(data_frame, groupby_column, column_name):
         data=[
             go.Histogram(
             x=avg_rating,
-            hoverinfo='y',
             nbinsx=10
             )
         ],
         layout=go.Layout(
-            title='Average ratings of movies',
-            xaxis={'title': 'Movie ratings', 'range': [0, 5]},
+            title='Average ratings of movies with 10 or more viewers',
+            title_x=0.5,
+            xaxis={'title': 'Movie ratings', 'range': [0.5, 5.5]},
             yaxis={'title': 'Frequency'}
         )        
     )
