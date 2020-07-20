@@ -15,7 +15,7 @@ def poster(reference):
     Parameters:
     -----------
     reference: str
-        A tmdb identification number
+        A imdb identification number
 
     Returns
     --------
@@ -32,5 +32,28 @@ def poster(reference):
     pic = requests.get(pic_url)
 
     img = Image.open(BytesIO(pic.content))
-
+    
     return img
+
+def overview(reference):
+    """
+    Returns the plot summary of the movie from imdb database
+
+    Parameters
+    -----------
+    reference: str
+        A imdb identification number
+
+    Returns
+    --------
+    str
+        A summary about the plot of the movie
+    """
+    
+    url = 'https://www.imdb.com/title/tt0' + str(reference)
+    html = requests.get(url).content
+    response = HtmlResponse(url=url, body=html)
+
+    story = response.css('div.summary_text ::text').extract_first()
+
+    return story.strip()

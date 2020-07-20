@@ -38,7 +38,7 @@ from recommenders.collaborative_based import collab_model
 from recommenders.content_based import content_model
 
 # Added Custom Libraries
-from added_functions.webscrapper import poster
+from added_functions.webscrapper import poster, overview
 from added_functions.ratings_plots import counting_plot, distribution_plot
 from added_functions.year_plots import release_year
 import added_markdown.text as txt
@@ -50,7 +50,6 @@ title_list = load_movie_titles('resources/data/movies.csv')
 ratings = pd.read_csv('resources/data/ratings.csv')
 movies = pd.read_csv('resources/data/movies.csv')
 links = pd.read_csv('../data/links.csv', nrows=25)
-#train = pd.read_csv('../data/train.csv')
 
 # App declaration
 def main():
@@ -155,11 +154,15 @@ def main():
             index=0
         )
 
-        poster_id = df[df['title'] == option]['imdbId'].iloc[0] 
+        # Get the movie poster 
+        movie_id = df[df['title'] == option]['imdbId'].iloc[0] 
+        img = poster(movie_id)
+        st.sidebar.image(img)
 
-        img = poster(poster_id)
-
-        st.image(img)
+        # Plot summary of the movie
+        st.subheader("Summary")
+        plot_summary = overview(movie_id)
+        st.write(plot_summary)
 
 if __name__ == '__main__':
     main()
