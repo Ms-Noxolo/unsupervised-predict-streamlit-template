@@ -1,7 +1,4 @@
-import streamlit as st
 import plotly.graph_objs as go
-import pandas as pd 
-
 
 def counting_plot(data_frame, column_name):
     """
@@ -10,7 +7,7 @@ def counting_plot(data_frame, column_name):
     Parameters
     -----------
     data_frame: DataFrame
-        A list of movie ratings
+        A dataframe of movie ratings
     column_name: str
         A column name in df consisting of categorical values
          
@@ -80,8 +77,8 @@ def distribution_plot(data_frame, groupby_column, column_name):
     fig = go.Figure(
         data=[
             go.Histogram(
-            x=avg_rating,
-            nbinsx=10
+                x=avg_rating,
+                nbinsx=10
             )
         ],
         layout=go.Layout(

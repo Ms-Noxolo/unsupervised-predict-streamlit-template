@@ -41,6 +41,7 @@ from recommenders.content_based import content_model
 from added_functions.webscrapper import poster, overview
 from added_functions.ratings_plots import counting_plot, distribution_plot
 from added_functions.year_plots import release_year
+from added_functions.runtime import movie_duration
 import added_markdown.text as txt
 
 # Data Loading
@@ -50,6 +51,7 @@ title_list = load_movie_titles('resources/data/movies.csv')
 ratings = pd.read_csv('resources/data/ratings.csv')
 movies = pd.read_csv('resources/data/movies.csv')
 links = pd.read_csv('../data/links.csv', nrows=25)
+metadata = pd.read_csv('../data/imdb_data.csv')
 
 # App declaration
 def main():
@@ -120,12 +122,16 @@ def main():
 
     # Data manipulation
     df = pd.merge(links, movies, on='movieId')
+    metadata.dropna(subset=['runtime'])
+    ## converting the column to numeric
+    metadata['runtime'] = pd.to_numeric(metadata['runtime'])
 
     if page_selection == "EDA":
         st.title("Exploratory Data Analysis")
 
         st.write(txt.introduction)
         show_ratings = st.checkbox("Movie ratings")
+
 
         if show_ratings:
             ratings_count = counting_plot(ratings, 'rating')
@@ -138,12 +144,25 @@ def main():
             st.plotly_chart(ratings_distribution)
             st.write(txt.avg_ratings_markdown)
 
+
         show_yearly = st.checkbox("Yearly releases")
 
         if show_yearly:
             yearly_counter = release_year(movies)
 
             st.plotly_chart(yearly_counter)
+
+
+        length_of_movie = st.checkbox("Movie runtime")
+        
+        if length_of_movie:
+
+            runtime = movie_duration(metadata, 200)
+
+            st.plotly_chart(runtime)
+
+
+
 
     if page_selection == "Movie App":        
         st.title('My Movies App')
@@ -154,8 +173,9 @@ def main():
             index=0
         )
 
-        # Get the movie poster 
+        # Get the movie poster and genre/s
         movie_id = df[df['title'] == option]['imdbId'].iloc[0] 
+
         img = poster(movie_id)
         st.sidebar.image(img)
 
