@@ -50,7 +50,7 @@ title_list = load_movie_titles('resources/data/movies.csv')
 # Custom Data loading
 ratings = pd.read_csv('resources/data/ratings.csv')
 movies = pd.read_csv('resources/data/movies.csv')
-links = pd.read_csv('../data/links.csv', nrows=25)
+links = pd.read_csv('../data/links.csv', nrows=10)
 metadata = pd.read_csv('../data/imdb_data.csv')
 
 # App declaration
@@ -123,6 +123,7 @@ def main():
     # Data manipulation
     df = pd.merge(links, movies, on='movieId')
     metadata.dropna(subset=['runtime'])
+    casting_database = pd.merge(metadata, movies, on='movieId')
     ## converting the column to numeric
     metadata['runtime'] = pd.to_numeric(metadata['runtime'])
 
@@ -177,7 +178,7 @@ def main():
 
 
     if page_selection == "Movie App":        
-        st.title('My Movies App')
+        st.title('The Movies App')
 
         option = st.sidebar.selectbox(
             label='Movie',
@@ -185,9 +186,15 @@ def main():
             index=0
         )
 
-        # Get the movie poster and genre/s
-        movie_id = df[df['title'] == option]['imdbId'].iloc[0] 
+        # Get the movie poster and genre
+        movie_id = df[df['title'] == option]['imdbId'].iloc[0]
+        genres = df[df['title'] == option]['genres'].iloc[0]
+        
+        # Casting and Director
+        director = casting_database[casting_database['title'] == option]['director'].iloc[0]
+        casts = casting_database[casting_database['title'] == option]['title_cast'].iloc[0]
 
+        
         img = poster(movie_id)
         st.sidebar.image(img)
 
@@ -195,8 +202,25 @@ def main():
         st.subheader("Summary")
         plot_summary = overview(movie_id)
         st.write(plot_summary)
-
         
+        st.subheader("Genre")
+        if '|' in genres:
+            genre = genres.replace('|', ', ')
+            st.write(genre)
+        else:
+            st.write(genres)  
+
+        st.subheader("Director")
+        st.write(director)
+
+        st.subheader("Cast")
+
+        # Check if there is casting members
+        if '|' in casts:
+            for cast in casts.split('|'):
+                st.write(cast)
+        else:
+            st.write(casts)        
 
 if __name__ == '__main__':
     main()
