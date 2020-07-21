@@ -126,6 +126,10 @@ def main():
     ## converting the column to numeric
     metadata['runtime'] = pd.to_numeric(metadata['runtime'])
 
+    ## Runtime slider inputs
+    min_runtime = int(metadata['runtime'].min())
+    max_runtime = int(metadata['runtime'].max())
+
     if page_selection == "EDA":
         st.title("Exploratory Data Analysis")
 
@@ -157,7 +161,15 @@ def main():
         
         if length_of_movie:
 
-            runtime = movie_duration(metadata, 200)
+            duration = st.slider(
+                label='Max duration of movie runtime',
+                min_value=min_runtime,
+                max_value=max_runtime,
+                value=200,
+                step=10
+            )
+
+            runtime = movie_duration(metadata, duration)
 
             st.plotly_chart(runtime)
 
@@ -183,6 +195,8 @@ def main():
         st.subheader("Summary")
         plot_summary = overview(movie_id)
         st.write(plot_summary)
+
+        
 
 if __name__ == '__main__':
     main()
