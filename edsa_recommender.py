@@ -137,7 +137,7 @@ def main():
 
         st.write(" We considered both the content-based and collaborative filter approaches")
 
-        st.info("Content-based Engine.")
+        st.info("Content-based Engine")
         st.markdown("""To achieve a Content-based engine, we considered pairwise cosine 
         similarity scores, which is is a metric used to measure how similar the documents are irrespective of their size
         for all movies based on their plot descriptions and the provided recommendations based on that similarity score threshold.""")
