@@ -124,7 +124,7 @@ def main():
         as well as YouTube who use it to decide which video to play next on autoplay.
         These are also popular in social media platform such as Facebook uses it to recommend pages to like and people to follow.""")
 
-        st.write("Broadly, recommender systems can be classified into 3 types:
+        st.write("Broadly, recommender systems can be classified into 3 types:")
 
         st.write("Simple recommenders: These are offer generalized recommendations to every user, based on movie popularity and/or genre.")
         st.write("Content-based recommenders: These suggest similar items based on a particular item. This system uses item metadata, such as genre, director, description, actors, etc. for movies, to make these recommendations. ")
