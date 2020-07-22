@@ -115,9 +115,38 @@ def main():
     # ------------- SAFE FOR ALTERING/EXTENSION -------------------
     if page_selection == "Solution Overview":
         st.title("Solution Overview")
-        st.write("Describe your winning approach on this page")
+        st.write("Description of our winning approach")
 
-    # You may want to add more sections here for aspects such as an EDA,
+        st.markdown("""We have deployed Machine Learning models which are recommender systems.
+        These systems are useful in the prediction of the "rating" or "preference" that a user 
+        would give to an item. They are very popular among major tech companies such as 
+        Amazon who use it to suggest products to customers, Netflix who use it to recommend movies/TvShows to the users
+        as well as YouTube who use it to decide which video to play next on autoplay.
+        These are also popular in social media platform such as Facebook uses it to recommend pages to like and people to follow.""")
+
+        st.write("Broadly, recommender systems can be classified into 3 types:
+
+        st.write("Simple recommenders: These are offer generalized recommendations to every user, based on movie popularity and/or genre.")
+        st.write("Content-based recommenders: These suggest similar items based on a particular item. This system uses item metadata, such as genre, director, description, actors, etc. for movies, to make these recommendations. ")
+        st.write("Collaborative filtering engines: These systems are widely used, and they try to predict the rating or preference that a user would give an item-based on past ratings and preferences of other users. ")
+
+        from PIL import Image
+        image = Image.open('resources/imgs/Collaborative Filtering vs Content-Based Filtering.png')
+
+        st.image(image, caption='Recommender Systems', use_column_width=True)
+
+        st.markdown("""We have deployed Machine Learning models which are recommender systems.
+        These systems are useful in the prediction of the "rating" or "preference" that a user 
+        would give to an item. They are very popular among major tech companies such as 
+        Amazon who use it to suggest products to customers, Netflix who use it to recommend movies/TvShows to the users
+        as well as YouTube who use it to decide which video to play next on autoplay.
+        These are also popular in social media platform such as Facebook uses it to recommend pages to like and people to follow.""")
+
+
+
+     
+
+    # You may want to add more sections here for aspects such as an EDcompanies A,
     # or to provide your business pitch.
 
     # Data manipulation
