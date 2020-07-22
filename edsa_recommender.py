@@ -142,7 +142,7 @@ def main():
         similarity scores, which is is a metric used to measure how similar the documents are irrespective of their size
         for all movies based on their plot descriptions and the provided recommendations based on that similarity score threshold.""")
         st.write(" The algorithm summary")
-        st.write("Get the index of the movie given its title.)
+        st.write("Get the index of the movie given its title.")
         st.write("Get the list of cosine similarity scores for that particular movie with all movies,  Convert it into a list of tuples with the first element is its position, and the second is the similarity score.")
         st.write("Sort the aforementioned list based on the similarity scores.")
         stwrite("Get the top 10 elements of this list. Ignore the first element as it refers to self.")
