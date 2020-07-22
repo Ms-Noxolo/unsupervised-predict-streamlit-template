@@ -130,10 +130,7 @@ def main():
         st.write("Content-based recommenders: These suggest similar items based on a particular item. This system uses item metadata, such as genre, director, description, actors, etc. for movies, to make these recommendations. ")
         st.write("Collaborative filtering engines: These systems are widely used, and they try to predict the rating or preference that a user would give an item-based on past ratings and preferences of other users. ")
 
-        from PIL import Image
-        image = Image.open('resources/imgs/download.png')
-
-        st.image(image, caption='Recommenders', use_column_width=True)
+        st.image('resources/imgs/download.png', caption='Recommenders', use_column_width=True)
 
         st.write(" We considered both the content-based and collaborative filter approaches")
 
@@ -145,23 +142,19 @@ def main():
         st.write("Get the index of the movie given its title.")
         st.write("Get the list of cosine similarity scores for that particular movie with all movies,  Convert it into a list of tuples with the first element is its position, and the second is the similarity score.")
         st.write("Sort the aforementioned list based on the similarity scores.")
-        stwrite("Get the top 10 elements of this list. Ignore the first element as it refers to self.")
+        st.write("Get the top 10 elements of this list. Ignore the first element as it refers to self.")
         st.markdown("""The quality of any recommender would be increased with the usage of better metadata and by capturing more of the finer details.
         We thus built a recommender system based on the following metadata: the 3 top actors, the director, related genres, and the movie plot keywords.
         The metadatada can also provide similarity score threshold which as seen as above is very handy in recommendations.""")
         
-        from PIL import Image
-        image = Image.open('resources/imgs/CF_vs_CBF.png')
-
+        st.image('resources/imgs/CF_vs_CBF.png', caption='Recommenders', use_column_width=True)
 
         st.info(" Collaborative filtering Engine")
         st.write("Collaborative filters can further be classified into two types:")
         st.write("User-based Filtering: These are systems that recommend products to a user that similar users have liked.")
         st.write("Item-based Filtering: These systems are extremely similar to the content recommendation engine that you built. These systems identify similar items based on how people have rated it in the past.")
 
-        from PIL import Image
-        image = Image.open('resources/imgs/Fig_HTML.png')
-
+        st.image('resources/imgs/Fig1_HTML.png', caption='Recommenders', use_column_width=True)
      
 
     # You may want to add more sections here for aspects such as an EDcompanies A,
