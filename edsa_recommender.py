@@ -131,18 +131,36 @@ def main():
         st.write("Collaborative filtering engines: These systems are widely used, and they try to predict the rating or preference that a user would give an item-based on past ratings and preferences of other users. ")
 
         from PIL import Image
-        image = Image.open('resources/imgs/Collaborative Filtering vs Content-Based Filtering.png')
+        image = Image.open('resources/imgs/download.png')
 
-        st.image(image, caption='Recommender Systems', use_column_width=True)
+        st.image(image, caption='Recommenders', use_column_width=True)
 
-        st.markdown("""We have deployed Machine Learning models which are recommender systems.
-        These systems are useful in the prediction of the "rating" or "preference" that a user 
-        would give to an item. They are very popular among major tech companies such as 
-        Amazon who use it to suggest products to customers, Netflix who use it to recommend movies/TvShows to the users
-        as well as YouTube who use it to decide which video to play next on autoplay.
-        These are also popular in social media platform such as Facebook uses it to recommend pages to like and people to follow.""")
+        st.write(" We considered both the content-based and collaborative filter approaches")
+
+        st.info("Content-based Engine.")
+        st.markdown("""To achieve a Content-based engine, we considered pairwise cosine 
+        similarity scores, which is is a metric used to measure how similar the documents are irrespective of their size
+        for all movies based on their plot descriptions and the provided recommendations based on that similarity score threshold.""")
+        st.write(" The algorithm summary")
+        st.write("Get the index of the movie given its title.)
+        st.write("Get the list of cosine similarity scores for that particular movie with all movies,  Convert it into a list of tuples with the first element is its position, and the second is the similarity score.")
+        st.write("Sort the aforementioned list based on the similarity scores.")
+        stwrite("Get the top 10 elements of this list. Ignore the first element as it refers to self.")
+        st.markdown("""The quality of any recommender would be increased with the usage of better metadata and by capturing more of the finer details.
+        We thus built a recommender system based on the following metadata: the 3 top actors, the director, related genres, and the movie plot keywords.
+        The metadatada can also provide similarity score threshold which as seen as above is very handy in recommendations.""")
+        
+        from PIL import Image
+        image = Image.open('resources/imgs/CF_vs_CBF.png')
 
 
+        st.info(" Collaborative filtering Engine")
+        st.write("Collaborative filters can further be classified into two types:")
+        st.write("User-based Filtering: These are systems that recommend products to a user that similar users have liked.")
+        st.write("Item-based Filtering: These systems are extremely similar to the content recommendation engine that you built. These systems identify similar items based on how people have rated it in the past.")
+
+        from PIL import Image
+        image = Image.open('resources/imgs/Fig_HTML.png')
 
      
 
