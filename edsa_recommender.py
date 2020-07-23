@@ -126,7 +126,7 @@ def main():
 
         st.write(txt.Collaborative)
         
-        st.image('resources/imgs/Fig_HTML.png')
+        st.image('resources/imgs/Fig1_HTML.png')
 
      
 
