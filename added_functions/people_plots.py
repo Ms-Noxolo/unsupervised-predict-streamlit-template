@@ -29,6 +29,22 @@ def director_movies_ratings(imdb_df, rating_df):
     director_df = pd.merge(imdb_df, filtered_df, on='movieId')
 
     director_rating = director_df.groupby('director')['rating'].mean().clip(upper=10)
-
     
+    fig = go.Figure(
+        data=[
+            go.Bar(
+                x=director_rating,
+                y=director_rating.index,
+                hoverinfo='y + x'
+            )
+        ],
+        layout=go.Layout(
+            title='Average rating of movies for each director',
+            title_x=0.5,
+            xaxis='Average rating',
+            yaxis='Movie director',
+            template='none'
+        )
+    )
 
+    return fig
