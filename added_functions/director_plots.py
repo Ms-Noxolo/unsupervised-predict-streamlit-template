@@ -18,9 +18,9 @@ def director_movies_ratings(imdb_df, rating_df):
         Axes object showing movie directors info 
     """
 
-    # Check for movies with 100 or more views
+    # Check for movies with 10 or more views
     viewing_counter = rating_df.groupby('movieId').count()['userId']
-    # Filter and get movies with 100 or more viewers
+    # Filter and get movies with 10 or more viewers
     filtered_counter = viewing_counter[viewing_counter >= 10]
 
     # Check for movies in the ratings table that are in the filtered_counter
@@ -28,21 +28,21 @@ def director_movies_ratings(imdb_df, rating_df):
 
     director_df = pd.merge(imdb_df, filtered_df, on='movieId')
 
-    director_rating = director_df.groupby('director')['rating'].mean().clip(upper=10)
+    director_rating = director_df.groupby('director')['rating'].mean().sort_values(ascending=False)[:10]
     
     fig = go.Figure(
         data=[
             go.Bar(
-                x=director_rating,
-                y=director_rating.index,
-                hoverinfo='y + x'
+                y=director_rating,
+                x=director_rating.index,
+                hoverinfo='y + x',
+                orientation='v'
             )
         ],
         layout=go.Layout(
-            title='Average rating of movies for each director',
+            title='Top 10 director average movie ratings with 10 or more viewers',
             title_x=0.5,
-            xaxis='Average rating',
-            yaxis='Movie director',
+            yaxis={'title': 'Average rating'},
             template='none'
         )
     )

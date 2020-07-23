@@ -42,6 +42,7 @@ from added_functions.webscrapper import poster, overview
 from added_functions.ratings_plots import counting_plot, distribution_plot
 from added_functions.year_plots import release_year
 from added_functions.runtime import movie_duration
+from added_functions.director_plots import director_movies_ratings
 import added_markdown.text as txt
 
 # Data Loading
@@ -150,7 +151,6 @@ def main():
         st.write(txt.introduction)
         show_ratings = st.checkbox("Movie ratings")
 
-
         if show_ratings:
             ratings_count = counting_plot(ratings, 'rating')
 
@@ -162,14 +162,12 @@ def main():
             st.plotly_chart(ratings_distribution)
             st.write(txt.avg_ratings_markdown)
 
-
         show_yearly = st.checkbox("Yearly releases")
 
         if show_yearly:
             yearly_counter = release_year(movies)
 
             st.plotly_chart(yearly_counter)
-
 
         length_of_movie = st.checkbox("Movie runtime")
         
@@ -187,7 +185,11 @@ def main():
 
             st.plotly_chart(runtime)
 
+        directors = st.checkbox("Information about directors")
 
+        if directors:
+            movie_directors = director_movies_ratings(metadata, ratings)
+            st.plotly_chart(movie_directors)
 
 
     if page_selection == "Movie App":        
