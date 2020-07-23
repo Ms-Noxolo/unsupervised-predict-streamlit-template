@@ -118,8 +118,7 @@ def main():
         st.info("Description of our winning approach")
         st.write(txt.introduction_overview)
         
-        image = Image.open('resources/imgs/download.png')
-        st.image(image, caption='Recommenders', use_column_width=True)
+        st.image('resources/imgs/download.png', caption='Recommenders', use_column_width=True)
 
         st.write("We considered both the content-based and collaborative filter approaches")
         st.write(txt.systems)
