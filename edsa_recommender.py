@@ -49,10 +49,11 @@ import added_markdown.text as txt
 title_list = load_movie_titles('resources/data/movies.csv')
 
 # Custom Data loading
+file_path = '../data/'
 ratings = pd.read_csv('resources/data/ratings.csv')
 movies = pd.read_csv('resources/data/movies.csv')
-links = pd.read_csv('../data/links.csv', nrows=10)
-metadata = pd.read_csv('../data/imdb_data.csv')
+links = pd.read_csv(file_path + 'links.csv', nrows=10)
+metadata = pd.read_csv(file_path + 'imdb_data.csv')
 
 # App declaration
 def main():
@@ -116,7 +117,7 @@ def main():
     # ------------- SAFE FOR ALTERING/EXTENSION -------------------
     if page_selection == "Solution Overview":
         st.title("Solution Overview")
-        st.info("Description of our winning approach")
+        st.subheader("Description of our winning approach")
         st.write(txt.introduction_overview)
         
         st.image('resources/imgs/download.png', caption='Recommenders', use_column_width=True)
@@ -128,6 +129,8 @@ def main():
         st.write(txt.Collaborative)
         
         st.image('resources/imgs/Fig1_HTML.png')
+        
+        st.subheader("Collaborative method")
 
      
 
