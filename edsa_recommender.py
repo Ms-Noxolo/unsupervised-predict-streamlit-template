@@ -193,8 +193,8 @@ def main():
 
             year_slider = st.slider(
                 label="Year range",
-                min_value=1874,
-                max_value=2019,
+                min_value=int(genre_df['year'].min()),
+                max_value=int(genre_df['year'].max()),
                 value=(1920, 1980),
                 step=2
             )

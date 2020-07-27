@@ -64,15 +64,16 @@ def genre_pct(data, year_from, year_to):
     ax : plotly graph object
         Axes object of percent genre distribution 
     """
+
     # Remove Nan values in the year column
-    data.dropna(inplace=True, subset=['year'])
+    data.dropna(inplace=True, subset=['year'], axis=0)
     # Convert the year column to numeric values
     data['year'] = data['year'].astype(int)
     # Filter by specified range
-    data[(data['year'] >= year_from) & (data['year'] <= year_to)]
+    filtered_data = data[(data['year'] >= year_from) & (data['year'] <= year_to)]
 
     # Convert the genre count into a dictionary
-    count_dist = data.sum(axis=0).loc['Sci-Fi':'Mystery'].pipe(dict)
+    count_dist = filtered_data.sum(axis=0).loc['Sci-Fi':'Mystery'].pipe(dict)
     # Filter by values greater than 0
     filtered_dict = {k: v for k, v in count_dist.items() if v > 0}  
 
