@@ -117,11 +117,12 @@ def main():
     # ------------- SAFE FOR ALTERING/EXTENSION -------------------
     if page_selection == "Solution Overview":
         st.title("Solution Overview")
-        st.subheader("Description of our winning approach")   
+        st.write("## Description of our winning approach")   
 
     # You may want to add more sections here for aspects such as an EDcompanies A,
     # or to provide your business pitch.
 
+        st.subheader('Introduction')
         st.write(txt.introduction_overview)
         
         st.image('resources/imgs/download.png', caption='Recommenders', use_column_width=True)
@@ -134,7 +135,16 @@ def main():
         
         st.image('resources/imgs/Fig1_HTML.png')
         
-        st.subheader("Collaborative method")
+        st.subheader("Content Based Filtering")
+        st.write(txt.content_based_intro)
+
+        st.write("**Table of movies and their genres**")
+        st.dataframe(movies.head())
+        st.write("**Table of cast and director for each movie**")
+        st.dataframe(metadata.head())
+
+        st.subheader("Collaborative Filtering")
+
 
     # Data manipulation
     df = pd.merge(links, movies, on='movieId')

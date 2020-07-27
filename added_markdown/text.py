@@ -70,3 +70,9 @@ Collaborative = """
     items based on how people have rated it in the past.
 """
 
+content_based_intro = """
+    Content based filtering uses attributes to recommend similar content.
+    These recommendations can be based on movies with similar genres, actors and 
+    directors.
+"""
+
