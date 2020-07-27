@@ -24,7 +24,7 @@ def director_movies_ratings(imdb_df, rating_df, switch):
     viewing_counter = rating_df.groupby('movieId').count()['userId']
     # Filter and get movies with 10 or more viewers
     filtered_counter = viewing_counter[viewing_counter >= 10]
-
+    
     # Check for movies in the ratings table that are in the filtered_counter
     filtered_df = rating_df[rating_df['movieId'].isin(filtered_counter.index)]
 
