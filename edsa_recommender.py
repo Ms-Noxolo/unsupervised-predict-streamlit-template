@@ -193,7 +193,12 @@ def main():
 
             display_option = st.radio(
                 label="Display",
-                options=('Average ratings', 'Number of ratings', 'Number of movies'),
+                options=(
+                    'Average ratings', 
+                    'Average rating vs number of movies', 
+                    'Number of ratings', 
+                    'Number of movies'
+                    ),
                 index=0
             )
             movie_directors = director_movies_ratings(metadata, ratings, display_option)
