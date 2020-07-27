@@ -68,27 +68,26 @@ def genre_pct(data, year_from, year_to):
     data.dropna(inplace=True, subset=['year'])
     # Convert the year column to numeric values
     data['year'] = data['year'].astype(int)
+    # Filter by specified range
+    data[(data['year'] >= year_from) & (data['year'] <= year_to)]
 
-    if disp == 'All':
-        
-        # Convert the genre count into a dictionary
-        count_dist = data.sum(axis=0).loc['Sci-Fi':'Mystery'].pipe(dict)
-        # Filter by values greater than 0
-        filtered_dict = {k: v for k, v in count_dist.items() if v > 0}  
+    # Convert the genre count into a dictionary
+    count_dist = data.sum(axis=0).loc['Sci-Fi':'Mystery'].pipe(dict)
+    # Filter by values greater than 0
+    filtered_dict = {k: v for k, v in count_dist.items() if v > 0}  
 
-        fig = go.Figure(
-            data=[
-                go.Pie(
-                    labels=filtered_dict.keys(),
-                    values=filtered_dict.values()
-                )
-            ]
+    fig = go.Figure(
+        data=[
+            go.Pie(
+                labels=list(filtered_dict.keys()),
+                values=list(filtered_dict.values()),
+                hoverinfo='label+percent'
+            )
+        ],
+        layout=go.Layout(
+            title=f'Genre distribution {year_from}-{year_to}',
+            showlegend=False
         )
-
-    else:
-        # Something
-
-
-    fig.update_layout(title=f'Genre distribution {year_from}-{year_to}')
+    )
 
     return fig       

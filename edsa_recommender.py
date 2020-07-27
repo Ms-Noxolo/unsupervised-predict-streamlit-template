@@ -40,7 +40,7 @@ from recommenders.content_based import content_model
 # Added Custom Libraries
 from added_functions.webscrapper import poster, overview
 from added_functions.ratings_plots import counting_plot, distribution_plot
-from added_functions.year_plots import release_year
+from added_functions.year_plots import release_year, genre_pct
 from added_functions.runtime import movie_duration
 from added_functions.people_plots import director_movies_ratings
 from added_functions.analysis import plot_results
@@ -56,6 +56,7 @@ movies = pd.read_csv('resources/data/movies.csv')
 links = pd.read_csv(file_path + 'links.csv', nrows=10)
 metadata = pd.read_csv(file_path + 'imdb_data.csv')
 results_df = pd.read_csv('added_data/results.csv')
+genre_df = pd.read_csv('added_data/genres.csv')
 
 # App declaration
 def main():
@@ -186,9 +187,20 @@ def main():
         show_yearly = st.checkbox("Yearly releases")
 
         if show_yearly:
-            yearly_counter = release_year(movies)
 
+            yearly_counter = release_year(movies)
             st.plotly_chart(yearly_counter)
+
+            year_slider = st.slider(
+                label="Year range",
+                min_value=1874,
+                max_value=2019,
+                value=(1920, 1980),
+                step=2
+            )
+
+            genre_dist = genre_pct(genre_df, year_slider[0], year_slider[1])
+            st.plotly_chart(genre_dist)
 
         length_of_movie = st.checkbox("Movie runtime")
         
