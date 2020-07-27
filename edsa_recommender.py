@@ -201,8 +201,23 @@ def main():
                     ),
                 index=0
             )
-            movie_directors = director_movies_ratings(metadata, ratings, display_option)
-            st.plotly_chart(movie_directors)
+            if display_option == 'Average rating vs number of movies':
+                slider = st.slider(
+                    label='Minimum number of movies',
+                    min_value=1,
+                    max_value=12,
+                    value=5 # In line with the default value of director_movies_ratings
+                )
+                if slider == 12:
+                    st.write("Beyond this point, the number of directors is less than 10.")
+
+                movie_directors = director_movies_ratings(metadata, ratings, display_option, slider)
+                st.plotly_chart(movie_directors)
+            else:
+                movie_directors = director_movies_ratings(metadata, ratings, display_option)
+                st.plotly_chart(movie_directors)
+
+                
 
 
     if page_selection == "Movie App":        

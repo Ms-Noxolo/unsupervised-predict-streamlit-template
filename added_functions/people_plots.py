@@ -1,7 +1,7 @@
 import plotly.graph_objs as go
 import pandas as pd
 
-def director_movies_ratings(imdb_df, rating_df, switch, min_number_of_movies=15):
+def director_movies_ratings(imdb_df, rating_df, switch, min_number_of_movies=5):
     """
     Returns the average ratings of movies based for each director
 
@@ -13,7 +13,7 @@ def director_movies_ratings(imdb_df, rating_df, switch, min_number_of_movies=15)
         Dataframe of ratings for each movie by different users
     switch: str
         Switch button between average ratings and number of ratings
-    min_number_of_movies: int
+    min_number_of_movies: int Default 5
         Number of movies the director has made 
 
     Returns
@@ -44,7 +44,7 @@ def director_movies_ratings(imdb_df, rating_df, switch, min_number_of_movies=15)
         yaxis = 'Average rating'
     elif switch == 'Average rating vs number of movies':
         director_rating = director_info.groupby('director')['rating'].mean().sort_values(ascending=False)[:10]
-        title = f'Top 10 director average movie ratings with {min_number_of_movies} or more movies'
+        title = f'Top 10 average movie ratings for directors with {min_number_of_movies} or more movies'
         yaxis = 'Average rating'
     elif switch == 'Number of ratings':
         director_rating = director_df.groupby('director')['rating'].count().sort_values(ascending=False)[:10]
