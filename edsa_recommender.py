@@ -139,11 +139,15 @@ def main():
         
         st.subheader("Content Based Filtering")
         st.write(txt.content_based_intro)
-
+        st.write('\n')
         st.write("**Table of movies and their genres**")
         st.dataframe(movies.head())
+        st.write('\n')
+        st.write('\n')
         st.write("**Table of cast and director for each movie**")
         st.dataframe(metadata.head())
+        st.write('\n')
+        st.write('\n')
 
         st.subheader("Collaborative Filtering")
         

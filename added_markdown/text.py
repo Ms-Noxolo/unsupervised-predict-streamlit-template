@@ -19,7 +19,8 @@ avg_ratings_markdown = """
 #################################### Overview Page ######################################
 
 introduction_overview = """
-    We have deployed Machine Learning models which are recommender systems.
+    Recommendation Engines are the programs that try to determine the similarities
+    bewteen two entities. We have deployed Machine Learning models which are recommender systems.
     These systems are useful in the prediction of the "rating" or "preference" 
     that a user would give to an item. They are very popular among major tech 
     companies such as Amazon who use it to suggest products to customers, Netflix 
@@ -75,4 +76,3 @@ content_based_intro = """
     These recommendations can be based on movies with similar genres, actors and 
     directors.
 """
-
