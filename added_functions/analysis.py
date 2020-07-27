@@ -18,8 +18,8 @@ def plot_results(data_frame):
     ax : plotly graph object
         Axes object showing average rmse scores.
     """
-    colors = ['#1f77b4'] * 6
-    colors[0] = 'red'
+    colors = ['#1f77b4'] * 6 # Default colors of the bars
+    colors[0] = 'red' # Color lowest bar red, since ascending is True
     fig = go.Figure(
         data=[
             go.Bar(
