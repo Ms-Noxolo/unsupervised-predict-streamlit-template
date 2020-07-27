@@ -43,6 +43,7 @@ from added_functions.ratings_plots import counting_plot, distribution_plot
 from added_functions.year_plots import release_year
 from added_functions.runtime import movie_duration
 from added_functions.people_plots import director_movies_ratings
+from added_functions.analysis import plot_results
 import added_markdown.text as txt
 
 # Data Loading
@@ -54,6 +55,7 @@ ratings = pd.read_csv('resources/data/ratings.csv')
 movies = pd.read_csv('resources/data/movies.csv')
 links = pd.read_csv(file_path + 'links.csv', nrows=10)
 metadata = pd.read_csv(file_path + 'imdb_data.csv')
+results_df = pd.read_csv('added_data/results.csv')
 
 # App declaration
 def main():
@@ -144,6 +146,9 @@ def main():
         st.dataframe(metadata.head())
 
         st.subheader("Collaborative Filtering")
+        
+        model_performance = plot_results(results_df)
+        st.plotly_chart(model_performance)
 
 
     # Data manipulation
