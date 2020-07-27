@@ -86,6 +86,7 @@ def genre_pct(data, year_from, year_to):
         ],
         layout=go.Layout(
             title=f'Genre distribution {year_from}-{year_to}',
+            title_x=0.5,
             showlegend=False
         )
     )
