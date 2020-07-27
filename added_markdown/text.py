@@ -16,7 +16,7 @@ avg_ratings_markdown = """
     were those with 10 or more viewers.  
 """
 
-### Overview Page
+#################################### Overview Page ######################################
 
 introduction_overview = """
     We have deployed Machine Learning models which are recommender systems.
@@ -45,14 +45,15 @@ systems = """
     their size for all movies based on their plot descriptions and the provided 
     recommendations based on that similarity score threshold.
     
-    The algorithm summary:
-    -Get the index of the movie given its title.
-    -Get the list of cosine similarity scores for that particular movie with all movies,  
+    ### The algorithm summary:
+    - Get the index of the movie given its title.
+    - Get the list of cosine similarity scores for that particular movie with all movies,  
     Convert it into a list of tuples with the first element is its position, and the 
     second is the similarity score.
-    -Sort the aforementioned list based on the similarity scores.
-    -Get the top 10 elements of this list. Ignore the first element as it refers to self.
-    -
+    - Sort the aforementioned list based on the similarity scores.
+    - Get the top 10 elements of this list. 
+    - Ignore the first element as it refers to self.
+
     The quality of any recommender would be increased with the usage of better metadata 
     and by capturing more of the finer details. We thus built a recommender system based 
     on the following metadata: the 3 top actors, the director, related genres, and the 
@@ -61,10 +62,11 @@ systems = """
 """
 
 Collaborative = """
-    Collaborative filtering Engine
+    ### Collaborative filtering Engine
     Collaborative filters can further be classified into two types:
     User-based Filtering: These are systems that recommend products to a user that 
     similar users have liked. Item-based Filtering: These systems are extremely similar 
     to the content recommendation engine that you built. These systems identify similar 
     items based on how people have rated it in the past.
 """
+

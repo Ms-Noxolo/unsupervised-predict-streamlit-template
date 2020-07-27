@@ -117,7 +117,11 @@ def main():
     # ------------- SAFE FOR ALTERING/EXTENSION -------------------
     if page_selection == "Solution Overview":
         st.title("Solution Overview")
-        st.subheader("Description of our winning approach")
+        st.subheader("Description of our winning approach")   
+
+    # You may want to add more sections here for aspects such as an EDcompanies A,
+    # or to provide your business pitch.
+
         st.write(txt.introduction_overview)
         
         st.image('resources/imgs/download.png', caption='Recommenders', use_column_width=True)
@@ -131,11 +135,6 @@ def main():
         st.image('resources/imgs/Fig1_HTML.png')
         
         st.subheader("Collaborative method")
-
-     
-
-    # You may want to add more sections here for aspects such as an EDcompanies A,
-    # or to provide your business pitch.
 
     # Data manipulation
     df = pd.merge(links, movies, on='movieId')
@@ -191,7 +190,13 @@ def main():
         directors = st.checkbox("Information about directors")
 
         if directors:
-            movie_directors = director_movies_ratings(metadata, ratings)
+
+            display_option = st.radio(
+                label="Display",
+                options=('Average ratings', 'Number of ratings', 'Number of movies'),
+                index=0
+            )
+            movie_directors = director_movies_ratings(metadata, ratings, display_option)
             st.plotly_chart(movie_directors)
 
 
