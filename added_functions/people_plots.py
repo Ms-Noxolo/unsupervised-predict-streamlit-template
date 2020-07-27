@@ -35,8 +35,8 @@ def director_movies_ratings(imdb_df, rating_df, switch, min_number_of_movies=15)
     # Check for movies in the ratings table that are in the filtered_counter
     filtered_df = rating_df[rating_df['movieId'].isin(filtered_counter.index)]
 
-    director_df = pd.merge(filtered_df, imdb_df, on='movieId')
-    director_info = pd.merge(filtered_df, directors, on='movieId')
+    director_df = pd.merge(filtered_df, imdb_df, on='movieId', how='inner')
+    director_info = pd.merge(filtered_df, directors, on='movieId', how='inner')
 
     if switch == 'Average ratings':
         director_rating = director_df.groupby('director')['rating'].mean().sort_values(ascending=False)[:10]

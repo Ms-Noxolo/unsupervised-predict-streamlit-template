@@ -42,7 +42,7 @@ from added_functions.webscrapper import poster, overview
 from added_functions.ratings_plots import counting_plot, distribution_plot
 from added_functions.year_plots import release_year
 from added_functions.runtime import movie_duration
-from added_functions.director_plots import director_movies_ratings
+from added_functions.people_plots import director_movies_ratings
 import added_markdown.text as txt
 
 # Data Loading
