@@ -48,17 +48,14 @@ def release_year(movies_df):
     return fig 
 
 
-def genre_pct(imdb_df, disp, year_from=None, year_to=None):
+def genre_pct(data, year_from, year_to):
     """
     Returns a pie chart showing the percent of genres in the movies
 
     Parameters
     -----------
-    imdb_df: DataFrame
+    data: DataFrame
         An imdb data frame of movies and their genres
-    disp: str
-        A display option of whether to display all the movies
-        or display according to period
     year_from, year_to: int, default 'None'
         A display period for the year
 
@@ -67,3 +64,31 @@ def genre_pct(imdb_df, disp, year_from=None, year_to=None):
     ax : plotly graph object
         Axes object of percent genre distribution 
     """
+    # Remove Nan values in the year column
+    data.dropna(inplace=True, subset=['year'])
+    # Convert the year column to numeric values
+    data['year'] = data['year'].astype(int)
+
+    if disp == 'All':
+        
+        # Convert the genre count into a dictionary
+        count_dist = data.sum(axis=0).loc['Sci-Fi':'Mystery'].pipe(dict)
+        # Filter by values greater than 0
+        filtered_dict = {k: v for k, v in count_dist.items() if v > 0}  
+
+        fig = go.Figure(
+            data=[
+                go.Pie(
+                    labels=filtered_dict.keys(),
+                    values=filtered_dict.values()
+                )
+            ]
+        )
+
+    else:
+        # Something
+
+
+    fig.update_layout(title=f'Genre distribution {year_from}-{year_to}')
+
+    return fig       
