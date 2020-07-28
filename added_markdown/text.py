@@ -77,7 +77,7 @@ content_based_intro = """
     directors.
 """
 
-colab_graph - """
+colab_graph = """
     From the graph above even though the model were running on a subset of the data,
     the SVD model managed to perform better than all the other models. Hence the SVD 
     model was the prefered model to train on a much larger database and use it as our
