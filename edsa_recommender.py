@@ -252,7 +252,7 @@ def main():
 
 
     if page_selection == "Movie App":        
-        st.title('The Movies App')
+        st.title('Recommended Movies')
 
         option = st.sidebar.selectbox(
             label='Movie',
