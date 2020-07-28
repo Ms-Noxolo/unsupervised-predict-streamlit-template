@@ -154,6 +154,8 @@ def main():
         
         model_performance = plot_results(results_df)
         st.plotly_chart(model_performance)
+        st.write('\n')
+        st.write(txt.colab_graph)       
 
 
     # Data manipulation

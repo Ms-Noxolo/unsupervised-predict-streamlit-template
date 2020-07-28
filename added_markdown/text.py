@@ -76,3 +76,10 @@ content_based_intro = """
     These recommendations can be based on movies with similar genres, actors and 
     directors.
 """
+
+colab_graph - """
+    From the graph above even though the model were running on a subset of the data,
+    the SVD model managed to perform better than all the other models. Hence the SVD 
+    model was the prefered model to train on a much larger database and use it as our
+    collaborative model.
+"""
