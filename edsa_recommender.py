@@ -254,9 +254,16 @@ def main():
     if page_selection == "Movie App":        
         st.title('Recommended Movies')
 
+        try:
+            top_recommendations
+        except NameError:
+            options = df['title']
+        else:
+            options = top_recommendations
+        
         option = st.sidebar.selectbox(
             label='Movie',
-            options=df['title'],
+            options=options,
             index=0
         )
 
