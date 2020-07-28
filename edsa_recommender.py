@@ -50,7 +50,7 @@ import added_markdown.text as txt
 title_list = load_movie_titles('resources/data/movies.csv')
 
 # Custom Data loading
-file_path = '../data/'
+file_path = '../unsupervised_data/unsupervised_movie_data/'
 ratings = pd.read_csv('resources/data/ratings.csv')
 movies = pd.read_csv('resources/data/movies.csv')
 links = pd.read_csv(file_path + 'links.csv', nrows=10)
