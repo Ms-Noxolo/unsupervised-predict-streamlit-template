@@ -256,7 +256,7 @@ def main():
 
         option = st.sidebar.selectbox(
             label='Movie',
-            options=top_recommendations,
+            options=df['title'],
             index=0
         )
 
