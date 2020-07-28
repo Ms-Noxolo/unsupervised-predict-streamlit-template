@@ -53,7 +53,7 @@ title_list = load_movie_titles('resources/data/movies.csv')
 file_path = '../unsupervised_data/unsupervised_movie_data/'
 ratings = pd.read_csv('resources/data/ratings.csv')
 movies = pd.read_csv('resources/data/movies.csv')
-links = pd.read_csv(file_path + 'links.csv', nrows=10)
+links = pd.read_csv(file_path + 'links.csv')
 metadata = pd.read_csv(file_path + 'imdb_data.csv')
 results_df = pd.read_csv('added_data/results.csv')
 genre_df = pd.read_csv('added_data/genres.csv')
