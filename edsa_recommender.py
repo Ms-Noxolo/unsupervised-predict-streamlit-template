@@ -53,7 +53,7 @@ title_list = load_movie_titles('resources/data/movies.csv')
 file_path = '../unsupervised_data/unsupervised_movie_data/'
 ratings = pd.read_csv('resources/data/ratings.csv')
 movies = pd.read_csv('resources/data/movies.csv')
-links = pd.read_csv(file_path + 'links.csv')
+links = pd.read_csv(file_path + 'links.csv', nrows=20)
 metadata = pd.read_csv(file_path + 'imdb_data.csv')
 results_df = pd.read_csv('added_data/results.csv')
 genre_df = pd.read_csv('added_data/genres.csv')
@@ -252,7 +252,7 @@ def main():
 
 
     if page_selection == "Movie App":        
-        st.title('Movies in the database')
+        st.title('20 of the movies in the database')
         
         option = st.sidebar.selectbox(
             label='Movie',
